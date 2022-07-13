@@ -6,7 +6,6 @@ export default function TextArea({ rows, ...rest }) {
     return (
       <textarea
         className="form-control"
-        style={{ margin: "0px" }}
         rows={rows || 5}
         formNoValidate
         {...field}

@@ -2,21 +2,13 @@ import React from "react";
 import { Field as FormikField, ErrorMessage } from "formik";
 export default function Field(props) {
   const { label, name, onRender } = props;
-  const validator = (value) => {
-    const { required } = props;
-    let error;
-    if (required && value.length < 1) {
-      error = name + " cannot be empty";
-    }
-    return error;
-  };
+
   return (
-    <div style={{ fontSize: "1.5rem" }}>
-      <label htmlFor={name}>{label}</label>
+    <div style={{ fontSize: "2rem" }}>
+      <label htmlFor={name}>{label || name}</label>
       <br />
       <FormikField
         {...props}
-        validate={validator}
         render={
           onRender
             ? onRender
@@ -25,7 +17,6 @@ export default function Field(props) {
               }
         }
       />
-      <br />
       <ErrMsg name={name} />
     </div>
   );
@@ -36,7 +27,7 @@ const ErrMsg = (props) => {
       style={{
         color: "red",
         fontSize: "1rem",
-        minHeight: "1rem",
+        minHeight: "1.5rem",
       }}
     >
       <ErrorMessage {...props} />
